@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="order_reparation_form_view" model="ir.ui.view">
+            <field name="name">order.reparation.form.view</field>
+            <field name="model">taller.order.reparation</field>
+            <field name="arch" type="xml">
+                <form string="order reparation form">
+                    <header>
+                        <!-- el boton al ser tipo object, espera una funcion para ejecutar,
+                        el nombre de esta funcion es el atributo name del boton donde la
+                        funcion debe estar definida en el modelo de la vista, en este caso,
+                        taller.order.reparation -->
+                        <field name="state" widget="statusbar" statusbar_visible="nuevo,confirmado,realizado"/>
+                        <button name="confirm" string="Confirmar" type="object"
+                                attrs="{
+                                'invisible': [('state', '=', 'confirmado')],
+                                'readonly': [('state', '=', 'confirmado')],
+                                }"/>
+                        <button name="cancel" string="Cancelar" type="object"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <h2>
+                                <field name="name" readonly="1"/>
+                            </h2>
+                            <field name="partner_id"/>
+                        </group>
+
+                        <notebook>
+                            <page string="order lines" name="order_reparation_line_ids">
+                                <field name="order_reparation_line_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="vehicle_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group>
+                            <field name="notas" nolabel="1" placeholder="Notas..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="order_reparation_tree_view" model="ir.ui.view">
+            <field name="name">order.reparation.tree.view</field>
+            <field name="model">taller.order.reparation</field>
+            <field name="arch" type="xml">
+                <tree string="Order reparation tree view">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_order_reparation_view" model="ir.actions.act_window">
+            <field name="name">Ordenes de reparacion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">taller.order.reparation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_taller_child2"
+                  parent="taller.menu_taller_root"
+                  name="Orden de reparacion"
+                  action="action_order_reparation_view"
+                  sequence="1"
+        />
+    </data>
+</odoo>

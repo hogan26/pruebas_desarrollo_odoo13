@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_taller_vehicle,access_taller_vehicle,model_taller_vehicle,base.group_user,1,1,1,0
+access_taller_order_reparation,access_taller_order_reparation,model_taller_order_reparation,base.group_user,1,1,1,0
+access_taller_order_reparation_line,access_taller_order_reparation_line,model_taller_order_reparation_line,base.group_user,1,1,1,0
+access_taller_vehicle_tag,access_taller_vehicle_tag,model_vehicle_tag,base.group_user,1,1,1,0

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="sale_order_form_utility" model="ir.ui.view">
+            <field name="name">sale.order.form.utility</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                    <field name="opportunity_id"/>
+                    <field name="x_profundidad_pozo2"/>
+                    <field name="x_servicios_requeridos"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='price_unit']" position="after">
+                    <field name="utilidad_porcentaje"/>
+                    <field name="precio_venta"/>
+                    <field name="monto_final"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='price_subtotal']" position="after">
+                    <field name="margen_total"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label"/>
+                    <field name="suma_margen"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

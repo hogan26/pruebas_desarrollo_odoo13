@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  odoo_data crea un esqueleto inicial de la vista  -->
+<!-- los archivos xml para vistas se componen de: vistas, acciones y
+menus -->
+<odoo>
+    <data>
+        <!-- odoo_form crea el esqueleto principal de la vista formulario -->
+        <!-- form view -->
+        <record id="view_vehicle_form" model="ir.ui.view">
+            <field name="name">view.vehicle.form</field>
+            <field name="model">taller.vehicle</field>
+            <field name="arch" type="xml">
+                <form string="Vehicle form">
+                    <sheet>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="matricula"/>
+                        </group>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vehicle_tree" model="ir.ui.view">
+            <field name="name">view.vehicle.tree</field>
+            <field name="model">taller.vehicle</field>
+            <field name="arch" type="xml">
+                <tree string="Vehicle tree">
+                    <field name="active"/>
+                    <field name="name"/>
+                    <field name="matricula"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- estaria faltando la accion, la podemos crea con
+        odoo_view_action -->
+
+        <record id="action_vehicle_view" model="ir.actions.act_window">
+            <field name="name">Vehiculos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">taller.vehicle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- finalmente tenemos los menus, primero el menu root,
+        odoo_menuitem_root -->
+        <menuitem id="menu_taller_root"
+                  name="Taller"
+                  sequence="1"
+        />
+        <menuitem id="menu_taller_child1"
+                  parent="taller.menu_taller_root"
+                  name="Vehiculos"
+                  action="action_vehicle_view"
+                  sequence="1"
+        />
+    </data>
+</odoo>
